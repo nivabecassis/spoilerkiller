@@ -27,13 +27,15 @@ function addItemtToBlacklist(evt) {
     let itemList = $('blacklist-items-list');
     console.log(itemTxt, itemList);
     if (itemTxt) {
-        // Add the item to the popup.html
-        let item = cloneBlacklistTemplate(itemTxt);
-        itemList.appendChild(item);
-        // Add the new item to the Chrome storage API
         chrome.storage.sync.get('blacklist', function(spk) {
-            spk.blacklist.push(itemTxt);
-            chrome.storage.sync.set({'blacklist': spk.blacklist});
+            if (!spk.blacklist.includes(itemTxt)) {
+                // Add the new item to the Chrome storage API
+                spk.blacklist.push(itemTxt);
+                chrome.storage.sync.set({'blacklist': spk.blacklist});
+                // Add the new item to the popup.html
+                let item = cloneBlacklistTemplate(itemTxt);
+                itemList.appendChild(item);
+            }
         });
     }
 }

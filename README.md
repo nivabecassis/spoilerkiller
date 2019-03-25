@@ -24,6 +24,8 @@ Extension works for TV shows and movies.
 ### Chrome Storage API
 
 - Use the storage API for saving the changes the user makes
+- New movie/show is added to the API when the user clicks the 'submit' button
+- Blacklist is reloaded from storage API everytime the popup.html is opened
 
 
 ### Using movie/show db API
@@ -40,7 +42,7 @@ Extension works for TV shows and movies.
 
 ## To-Do List
 
-[ ] Create popup.html for main extension landing page  
+[x] Create popup.html for main extension landing page  
 [ ] Create options.html for any options  
 [ ] Create the styling for the extension  
 [ ] Use API to store the inputted film/show data  
@@ -50,7 +52,7 @@ Extension works for TV shows and movies.
 [ ] Allow the user to expand/collapse the list of items in the blacklist 
 [ ] Perform validation on the input of the show/movie  
     [ ] Sanitize data  
-    [ ] Skip duplicates
+    [x] Skip duplicates
 
 
 ## Legal Stuff
