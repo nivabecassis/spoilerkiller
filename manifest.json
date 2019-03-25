@@ -1,0 +1,14 @@
+{
+    "name": "SpoilerKiller",
+    "version": "1.0",
+    "description": "Blocks all related content of blacklisted movies and TV shows",
+    "permissions": ["storage"],
+    "icons": {
+        "64": "images/icon64.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": "images/icon64.png"
+    },
+    "manifest_version": 2
+}

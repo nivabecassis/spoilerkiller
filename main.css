@@ -1,0 +1,15 @@
+#blacklist-items-list {
+    list-style: none;
+}
+
+#content-name-field {
+    /* width: 80%; */
+}
+
+#content-name-template {
+    visibility: collapse;
+}
+
+#blacklist-instructions {
+    width: 100%;
+}
