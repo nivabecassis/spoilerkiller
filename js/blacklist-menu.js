@@ -14,6 +14,7 @@ function $(id) {
  */
 document.addEventListener("DOMContentLoaded", function() {
     $("btnAdd").addEventListener('click', addItemtToBlacklist);
+    $("blacklist-items-list").addEventListener('click', handleBlacklistClick);
     loadBlacklist();
 });
 
@@ -63,8 +64,29 @@ function loadBlacklist() {
  * @param {String} itemTxt The text to be added to the item
  */
 function cloneBlacklistTemplate(itemTxt) {
-    let item = $('content-name-template').cloneNode();
-    item.id = "";
-    item.textContent = itemTxt;
+    let item = $('blacklist-item-template').cloneNode(true);
+    item.removeAttribute('id');
+    item.querySelector('.content-name').textContent = itemTxt;
     return item;
+}
+
+/**
+ * Any click event handling takes place here. Check for the target
+ * of the click and handle appropriately.
+ * @param {Object} evt MouseEvent on the blacklist items list 
+ */
+function handleBlacklistClick(evt) {
+    if (evt) {
+        let target = evt.target;
+        if (target.classList.contains('content-remove-btn')) {
+            // Remove the entry from the storage API and DOM
+            chrome.storage.sync.get('blacklist', function(spk){
+                let liTxt = target.previousElementSibling.textContent;
+                let blacklistIndex = spk.blacklist.indexOf(liTxt);
+                spk.blacklist.splice(blacklistIndex);
+                chrome.storage.sync.set({'blacklist': spk.blacklist});
+                target.parentElement.remove();
+            });            
+        }
+    }
 }

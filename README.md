@@ -52,7 +52,10 @@ Extension works for TV shows and movies.
 [ ] Allow the user to expand/collapse the list of items in the blacklist 
 [ ] Perform validation on the input of the show/movie  
     [ ] Sanitize data  
-    [x] Skip duplicates
+    [x] Skip duplicates  
+[x] Allow user to add entries to the blacklist  
+[x] Allow user to remove entries from the blacklist  
+[ ] Allow the submission of the new entry with the 'Enter' key
 
 
 ## Legal Stuff
@@ -69,4 +72,9 @@ You shall place the following notice prominently on your application: "This prod
 
 Any use of the TMDb logo in your application shall be less prominent than the logo or mark that primarily describes the application and your use of the TMDb logo shall not imply any endorsement by TMDb.
 ```
+
+
+### Author Credits
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/lucy-g" title="Lucy G">Lucy G</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 

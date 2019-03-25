@@ -2,14 +2,14 @@
     list-style: none;
 }
 
-#content-name-field {
-    /* width: 80%; */
-}
-
-#content-name-template {
+#blacklist-item-template {
     visibility: collapse;
 }
 
 #blacklist-instructions {
     width: 100%;
+}
+
+.content-remove-btn, .content-name {
+    display: inline;
 }
