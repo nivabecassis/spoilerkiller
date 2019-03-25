@@ -10,5 +10,8 @@
         "default_popup": "popup.html",
         "default_icon": "images/icon64.png"
     },
+    "background": {
+        "scripts": ["js/background.js"]
+    },
     "manifest_version": 2
 }

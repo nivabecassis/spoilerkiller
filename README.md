@@ -47,7 +47,10 @@ Extension works for TV shows and movies.
 [ ] Find API for film/show data (maybe use an icon for added look **?**)  
 [ ] Design actual block html overlay   
 [ ] Get appropriate size for the default-icon  
-[ ] Allow the user to expand/collapse the list of items in the blacklist  
+[ ] Allow the user to expand/collapse the list of items in the blacklist 
+[ ] Perform validation on the input of the show/movie  
+    [ ] Sanitize data  
+    [ ] Skip duplicates
 
 
 ## Legal Stuff
