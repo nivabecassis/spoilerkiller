@@ -42,20 +42,26 @@ Extension works for TV shows and movies.
 
 ## To-Do List
 
+### Main Features
+
 [x] Create popup.html for main extension landing page  
-[ ] Create options.html for any options  
-[ ] Create the styling for the extension  
+[x] Allow user to add entries to the blacklist  
+[x] Allow user to remove entries from the blacklist  
 [ ] Use API to store the inputted film/show data  
-[ ] Find API for film/show data (maybe use an icon for added look **?**)  
-[ ] Design actual block html overlay   
-[ ] Get appropriate size for the default-icon  
-[ ] Allow the user to expand/collapse the list of items in the blacklist 
+[ ] Find API for film/show data  
+[ ] Design actual block html overlay (the screen that hides blacklisted content)  
+[ ] Apply screen over blacklisted content in a content script   
 [ ] Perform validation on the input of the show/movie  
     [ ] Sanitize data  
     [x] Skip duplicates  
-[x] Allow user to add entries to the blacklist  
-[x] Allow user to remove entries from the blacklist  
-[ ] Allow the submission of the new entry with the 'Enter' key
+
+### Styling/Optional
+
+[ ] Create options.html for any options  
+[ ] Create the styling for the extension  
+[ ] Get appropriate size for the default-icon  
+[ ] Allow the user to expand/collapse the list of items in the blacklist  
+[ ] Allow the submission of the new entry with the 'Enter' key  
 
 
 ## Legal Stuff
@@ -65,7 +71,7 @@ Extension works for TV shows and movies.
 The below is from their [terms of use](https://www.themoviedb.org/documentation/api/terms-of-use) document, see below.
 
 ```
-3. Attribution
+1. Attribution
 You shall use the TMDb logo to identify your use of the TMDb APIs.
 
 You shall place the following notice prominently on your application: "This product uses the TMDb API but is not endorsed or certified by TMDb."
