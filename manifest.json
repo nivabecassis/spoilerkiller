@@ -2,7 +2,7 @@
     "name": "SpoilerKiller",
     "version": "1.0",
     "description": "Blocks all related content of blacklisted movies and TV shows",
-    "permissions": ["storage"],
+    "permissions": ["storage", "activeTab"],
     "icons": {
         "64": "images/icon64.png"
     },
@@ -13,5 +13,9 @@
     "background": {
         "scripts": ["js/background.js"]
     },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["js/content.js"]
+    }],
     "manifest_version": 2
 }

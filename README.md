@@ -21,6 +21,24 @@ Extension works for TV shows and movies.
 
 ## Technical Notes
 
+### Blacklist
+
+#### JSON Object format
+
+{
+    "blacklist": [
+        {
+            "name": "Game of Thrones",
+            "filters": "game of thrones|stark|lannister",
+            "keywords": [
+                "game of thrones",
+                "stark",
+                "lannister"
+            ]
+        }
+    ]
+}
+
 ### Chrome Storage API
 
 - Use the storage API for saving the changes the user makes
@@ -28,17 +46,20 @@ Extension works for TV shows and movies.
 - Blacklist is reloaded from storage API everytime the popup.html is opened
 
 
-### Using movie/show db API
+### App functionality in Details
+
+#### Extension Side
 
 1. User inputs name of film/show
 2. Sanitize data
 3. Call API to get keywords (maybe list of 10-15 items **?**)
 4. Save the film/show and associated keywords (or call API everytime the extension is loaded **?**) (Find most efficient solution)
-5. On reload of the page, find all words in the page that match the associated keywords (loop through the page details (Will this be an expensive operation? Maybe use anything in `<h>` or `p` elements that contain that content **?**))
-6. Block the content using a modest and clean solution (maybe use a blur effect **?**)
 
-- Use a content script in order to interact with the actual content of the website
+#### Active Tab Side (Content Script)
 
+1. On load of the page, load the list of blacklisted entries/keywords.
+2. Find all words in the page that match the associated keywords (loop through the page details (Will this be an expensive operation? Maybe use anything in `<h>` or `p` elements that contain that content **?**))
+3. Apply content block using the blur overlay effect
 
 ## To-Do List
 
@@ -46,9 +67,12 @@ Extension works for TV shows and movies.
 
 [x] Create popup.html for main extension landing page  
 [x] Allow user to add entries to the blacklist  
-[x] Allow user to remove entries from the blacklist  
-[ ] Use API to store the inputted film/show data  
+[x] Allow user to remove entries from the blacklist
+[ ] Standardize the creation/use of the blacklist object    
 [ ] Find API for film/show data  
+[ ] Use API to get film/show data  
+    [ ] Ensure to place a request rate limiting feature 
+    [ ] Upon entering a new entry into the blacklist, also store a single string that can be used as a regex pattern matcher to increase performance   
 [ ] Design actual block html overlay (the screen that hides blacklisted content)  
 [ ] Apply screen over blacklisted content in a content script   
 [ ] Perform validation on the input of the show/movie  
