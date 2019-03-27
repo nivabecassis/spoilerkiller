@@ -3,7 +3,9 @@
 /**
  * Onces the page has been loaded, we run the blocking process. 
  */
-document.addEventListener("DOMContentLoaded", runBlocker);
+console.log("the document state is " + document.readyState);
+runBlocker();
+
 
 const BLOCKER = {
     textFilters: "p",
@@ -18,9 +20,17 @@ const BLOCKER = {
  * 3. Apply the blur overlay effect to each of the matching blocks
  */
 function runBlocker() {
+    console.log('hey!');
     chrome.storage.sync.get('blacklist', function(spk) {
+        console.log(spk);
         // spk.blacklist;
-        let matches = findMatchingBlocks(spk.blacklist);
+        // let matches = findMatchingBlocks(spk.blacklist);
+        document.addEventListener("click", function(e) {
+            console.log("Click detected");
+            // if (e.target.nodeType === Node.TEXT_NODE) {
+                applyBlurOverlay(e.target);
+            // }
+        })
     });
 }
 
@@ -66,8 +76,14 @@ function checkBlacklistMatch(blacklist, text) {
 /**
  * Applies the blurring effect over the element that is passed
  * as a parameter. 
+ * Create a div and place the element inside. Place div where the
+ * element. 
  * @param {Object} element that will receive the blur effect
  */
 function applyBlurOverlay(element) {
-    // TODO
+    console.log("Applying blur to the following element ", element);
+    let overlay = document.createElement("div");
+    overlay.classList.add("blur");
+    element.parentElement.replaceChild(overlay, element);
+    overlay.appendChild(element);
 }
