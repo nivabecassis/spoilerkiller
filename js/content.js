@@ -6,12 +6,6 @@
 console.log("the document state is " + document.readyState);
 runBlocker();
 
-
-const BLOCKER = {
-    textFilters: "p",
-    imgFilters: "img"
-}
-
 /**
  * Top level method that will perform the following actions.
  * 
@@ -20,17 +14,8 @@ const BLOCKER = {
  * 3. Apply the blur overlay effect to each of the matching blocks
  */
 function runBlocker() {
-    console.log('hey!');
     chrome.storage.sync.get('blacklist', function(spk) {
-        console.log(spk);
-        // spk.blacklist;
-        // let matches = findMatchingBlocks(spk.blacklist);
-        document.addEventListener("click", function(e) {
-            console.log("Click detected");
-            // if (e.target.nodeType === Node.TEXT_NODE) {
-                applyBlurOverlay(e.target);
-            // }
-        })
+        let matches = findMatchingBlocks(spk.blacklist);
     });
 }
 
@@ -40,14 +25,13 @@ function runBlocker() {
  * @param {Object} blacklist 
  */
 function findMatchingBlocks(blacklist) {
-    textMatches = document.querySelectorAll(BLOCKER.textFilters);
-    textMatches.forEach((element) => {
+    let textNodes = getAllTextNodes(document.body);
+    textNodes.forEach((node) => {
         // Iterate over all elements found in the page
-        if (element.textContent) {
-            // **See To-Do** ATM only assuming a single string for matching
-            if (checkBlacklistMatch(blacklist, element.textContent)) {
+        if (node.textContent) {
+            if (checkBlacklistMatch(blacklist, node.textContent)) {
                 // Applying the block/blur over the original parent element
-                applyBlurOverlay(element);
+                applyBlurOverlay(node.parentNode);
             }
         }
     });
@@ -60,11 +44,12 @@ function findMatchingBlocks(blacklist) {
  * @return True if a match is found in the text, false otherwise
  */
 function checkBlacklistMatch(blacklist, text) {
-    // Below might be wrong
-    let bl = blacklist.blacklist;
-    for (let i = 0; i < bl.length; i++) {
+    for (let i = 0; i < blacklist.length; i++) {
         // Iterates over each entry in the blacklist 
-        if (text.search(bl.filters)) {
+        // if (text.search(blacklist[i].filter)) {
+            // Eventually switch this to use the created filter (regex)
+        const lowerText = text.toLowerCase();
+        if (lowerText.includes(blacklist[i].name.toLowerCase())) {
             // Match found
             return true;
         }
@@ -86,4 +71,18 @@ function applyBlurOverlay(element) {
     overlay.classList.add("blur");
     element.parentElement.replaceChild(overlay, element);
     overlay.appendChild(element);
+}
+
+/**
+ * Gets all the text nodes below the given root element.
+ * @param {Object} root Element root of a node tree.
+ */
+function getAllTextNodes(root) {
+    let temp, nodes = [];
+    let walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    // Place all matches in an array
+    while (temp = walk.nextNode()) {
+        nodes.push(temp);
+    }
+    return nodes;
 }

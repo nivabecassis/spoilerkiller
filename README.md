@@ -12,11 +12,11 @@ Extension works for TV shows and movies.
 - User can view blacklist
 - User can remove shows from the blacklist
 - Options page 
-  - Still not sure what to add here
+  - Quick enable/disable (maybe in real time)
 - Potentially use an API for finding related content keywords
 - Manual addition to the blacklist
   - Context menu on highlighting text to save that keyword to the blacklist 
-  - Input field in the extension popup
+  - Input field in the extension popup 
 
 
 ## Technical Notes
@@ -72,9 +72,10 @@ Extension works for TV shows and movies.
 [ ] Find API for film/show data  
 [ ] Use API to get film/show data  
     [ ] Ensure to place a request rate limiting feature 
-    [ ] Upon entering a new entry into the blacklist, also store a single string that can be used as a regex pattern matcher to increase performance   
-[ ] Design actual block html overlay (the screen that hides blacklisted content)  
-[ ] Apply screen over blacklisted content in a content script   
+    [ ] Upon entering a new entry into the blacklist, also store a single string that can be used as a regex pattern matcher to increase performance  
+[x] Design actual block html overlay (the screen that hides blacklisted content)  
+[x] Apply screen over blacklisted content in a content script  
+[ ] Use MutationObserver to listen to new changes to the DOM  
 [ ] Perform validation on the input of the show/movie  
     [ ] Sanitize data  
     [x] Skip duplicates  

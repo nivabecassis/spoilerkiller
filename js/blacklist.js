@@ -16,7 +16,8 @@ const BL = {
      * @param {String} name Name of the name to search for
      */
     findMatchInBlacklist(blacklist, name) {
-        return blacklist.some(e => e.name === name);
+        let lowerName = name.toLowerCase();
+        return blacklist.some(e => e.name.toLowerCase() === lowerName);
     },
 
     /**
