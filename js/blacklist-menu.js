@@ -29,9 +29,10 @@ function addItemtToBlacklist(evt) {
     console.log(itemTxt, itemList);
     if (itemTxt) {
         chrome.storage.sync.get('blacklist', function(spk) {
-            if (!spk.blacklist.includes(itemTxt)) {
+            if (!BL.findMatchInBlacklist(spk.blacklist, itemTxt)) {
                 // Add the new item to the Chrome storage API
-                spk.blacklist.push(itemTxt);
+                let entry = BL.createNewEntry(itemTxt);
+                spk.blacklist.push(entry);
                 chrome.storage.sync.set({'blacklist': spk.blacklist});
                 // Add the new item to the popup.html
                 let item = cloneBlacklistTemplate(itemTxt);
@@ -51,7 +52,7 @@ function loadBlacklist() {
         if (spk.blacklist && spk.blacklist.length > 0) {
             spk.blacklist.forEach(element => {
                 // Duplicate the template and add it to the DOM
-                let item = cloneBlacklistTemplate(element);
+                let item = cloneBlacklistTemplate(element.name);
                 let list = $('blacklist-items-list');
                 list.appendChild(item);
             });
@@ -82,7 +83,7 @@ function handleBlacklistClick(evt) {
             // Remove the entry from the storage API and DOM
             chrome.storage.sync.get('blacklist', function(spk){
                 let liTxt = target.previousElementSibling.textContent;
-                let blacklistIndex = spk.blacklist.indexOf(liTxt);
+                let blacklistIndex = spk.blacklist.map(e => {e.name}).indexOf(liTxt);
                 spk.blacklist.splice(blacklistIndex);
                 chrome.storage.sync.set({'blacklist': spk.blacklist});
                 target.parentElement.remove();

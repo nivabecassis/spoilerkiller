@@ -3,6 +3,8 @@
 /**
  * Creates the first instance of the blacklist. It is stored
  * in Chrome's storage sync API.
+ * 
+ * See README.md for data structure of the blacklist
  */
 chrome.runtime.onInstalled.addListener(function() {
     let blacklist = [];

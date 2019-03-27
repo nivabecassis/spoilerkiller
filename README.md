@@ -68,7 +68,7 @@ Extension works for TV shows and movies.
 [x] Create popup.html for main extension landing page  
 [x] Allow user to add entries to the blacklist  
 [x] Allow user to remove entries from the blacklist
-[ ] Standardize the creation/use of the blacklist object    
+[x] Standardize the creation/use of the blacklist object    
 [ ] Find API for film/show data  
 [ ] Use API to get film/show data  
     [ ] Ensure to place a request rate limiting feature 
