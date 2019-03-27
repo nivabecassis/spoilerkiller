@@ -6,9 +6,8 @@
 document.addEventListener("DOMContentLoaded", runBlocker);
 
 const BLOCKER = {
-    blacklist = [],
-    textFilters = "p",
-    imgFilters = "img"
+    textFilters: "p",
+    imgFilters: "img"
 }
 
 /**
@@ -34,18 +33,12 @@ function findMatchingBlocks(blacklist) {
     textMatches = document.querySelectorAll(BLOCKER.textFilters);
     textMatches.forEach((element) => {
         // Iterate over all elements found in the page
-        if (element.hasChildNodes()) {
-            element.childNodes.forEach((node) => {
-                // Iterate over all the child nodes
-                // Potential error -> may only go one level deep
-                if (node.nodeType === Node.TEXT_NODE) {
-                    // **See To-Do** ATM only assuming a single string for matching
-                    if (checkBlacklistMatch(blacklist, node.textContent)) {
-                        // Applying the block/blur over the original parent element
-                        applyBlurOverlay(element);
-                    }
-                }
-            });
+        if (element.textContent) {
+            // **See To-Do** ATM only assuming a single string for matching
+            if (checkBlacklistMatch(blacklist, element.textContent)) {
+                // Applying the block/blur over the original parent element
+                applyBlurOverlay(element);
+            }
         }
     });
 }
