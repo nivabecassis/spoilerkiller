@@ -51,9 +51,11 @@ Extension works for TV shows and movies.
 #### Extension Side
 
 1. User inputs name of film/show
-2. Sanitize data
-3. Call API to get keywords (maybe list of 10-15 items **?**)
-4. Save the film/show and associated keywords (or call API everytime the extension is loaded **?**) (Find most efficient solution)
+2. Sanitize data (URI encode)
+3. Call API to see if valid film/show
+4. If valid, call API for keywords
+5. Form regex String and store all info found (name, keywords, regex filter)
+6. If invalid, mark the show with a flag for the user to see and save the name of the entry
 
 #### Active Tab Side (Content Script)
 
